@@ -7,14 +7,17 @@ public class EnemyInstantiate : MonoBehaviour
     [SerializeField] private GameObject _enemyTemplate;
     [SerializeField] private int _iterationsAmount = 3;
 
-    private Vector3 _spawnPosition1 = new Vector3(-5, -3.5f);
-    private Vector3 _spawnPosition2 = new Vector3(0, 4);
-    private Vector3 _spawnPosition3 = new Vector3(5, -3.5f);
-
+    private Coroutine _enemyCreation;
+    private Vector3[] _spawnPositions = new Vector3[3] { new Vector3(-5, -3.5f), new Vector3(0, 4), new Vector3(5, -3.5f) };
 
     private void Start()
     {
-        StartCoroutine(SpawnEnemyInPositions());
+        _enemyCreation = StartCoroutine(SpawnEnemyInPositions());
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(_enemyCreation);
     }
 
     private IEnumerator SpawnEnemyInPositions()
@@ -23,12 +26,11 @@ public class EnemyInstantiate : MonoBehaviour
 
         for (int i = 0; i < _iterationsAmount; i++)
         {
-            CreateEnemy(_spawnPosition1);
-            yield return waitForTwoSeconds;
-            CreateEnemy(_spawnPosition2);
-            yield return waitForTwoSeconds;
-            CreateEnemy(_spawnPosition3);
-            yield return waitForTwoSeconds;
+            for (int j = 0; j < _spawnPositions.Length; j++)
+            {
+                CreateEnemy(_spawnPositions[j]);
+                yield return waitForTwoSeconds;
+            }
         }
     }
 
