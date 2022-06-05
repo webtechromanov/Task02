@@ -13,14 +13,15 @@ public class EnemyInstantiate : MonoBehaviour
     private Vector3 _enemyPosition3 = new Vector3(5, -3.5f);
     private Vector3[] _spawnPositions;
 
-    public EnemyInstantiate()
+
+    private void Awake()
     {
         _spawnPositions = new Vector3[3]
         {
             _enemyPosition1,
             _enemyPosition2,
             _enemyPosition3
-        };
+         };
     }
 
     private void Start()
