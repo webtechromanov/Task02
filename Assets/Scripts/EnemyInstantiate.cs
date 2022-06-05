@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemyInstantiate : MonoBehaviour
 {
     [SerializeField] private Enemy _enemyTemplate;
+    [SerializeField] private Vector3[] _spawnPositions;
     [SerializeField] private int _iterationsAmount = 3;
 
     private Coroutine _enemyCreation;
-    [SerializeField] private Vector3[] _spawnPositions;
 
     private void Start()
     {
