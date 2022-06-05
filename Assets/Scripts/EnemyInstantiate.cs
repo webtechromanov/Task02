@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class EnemyInstantiate : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyTemplate;
+    [SerializeField] private Enemy _enemyTemplate;
     [SerializeField] private int _iterationsAmount = 3;
 
     private Coroutine _enemyCreation;
-    private Vector3[] _spawnPositions = new Vector3[3] { new Vector3(-5, -3.5f), new Vector3(0, 4), new Vector3(5, -3.5f) };
+    private static Vector3 _enemyPosition1 = new Vector3(-5, -3.5f);
+    private static Vector3 _enemyPosition2 = new Vector3(0, 4);
+    private static Vector3 _enemyPosition3 = new Vector3(5, -3.5f);
+    private Vector3[] _spawnPositions = new Vector3[3] { _enemyPosition1, _enemyPosition2, _enemyPosition3 };
 
     private void Start()
     {
+
         _enemyCreation = StartCoroutine(SpawnEnemyInPositions());
     }
 
