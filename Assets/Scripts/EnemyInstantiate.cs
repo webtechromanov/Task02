@@ -15,7 +15,6 @@ public class EnemyInstantiate : MonoBehaviour
 
     private void Start()
     {
-
         _enemyCreation = StartCoroutine(SpawnEnemyInPositions());
     }
 
